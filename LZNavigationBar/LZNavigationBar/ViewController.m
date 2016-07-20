@@ -43,6 +43,12 @@
     [bar rightButtonClickWithBlock:^(UIButton *button) {
         NSLog(@"rightButtonClick");
     }];
+    
+    
+    UITableView *table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    table.delegate = self;
+    table.dataSource = self;
+    [self.view addSubview:table];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

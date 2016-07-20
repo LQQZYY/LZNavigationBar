@@ -15,9 +15,9 @@ static UIViewController *superController = nil;
 
 @interface LZNavigationBar ()
 
-@property (strong, nonatomic) UIView *leftView;
-@property (strong, nonatomic) UIView *centerView;
-@property (strong, nonatomic) UIView *rightView;
+//@property (strong, nonatomic) UIView *leftView;
+//@property (strong, nonatomic) UIView *centerView;
+//@property (strong, nonatomic) UIView *rightView;
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (strong, nonatomic) UIVisualEffectView *blurEffectView;
@@ -68,6 +68,7 @@ static UIViewController *superController = nil;
         
         superController = vc;
         [vc.view addSubview:self];
+        [vc.view bringSubviewToFront:self];
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(vc.view);
             make.height.mas_equalTo(@(LZNavigationBarHeight_bar));
@@ -85,6 +86,7 @@ static UIViewController *superController = nil;
         
         superView = view;
         [view addSubview:self];
+        [view bringSubviewToFront:self];
         [self mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.mas_equalTo(view);
             make.height.mas_equalTo(@(LZNavigationBarHeight_bar));
@@ -265,7 +267,7 @@ static UIViewController *superController = nil;
 }
 
 - (UIButton *)rightButton {
-    if (_rightView == nil) {
+    if (_rightButton == nil) {
         
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
         rightButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -290,7 +292,6 @@ static UIViewController *superController = nil;
         self.rightButtonClick(button);
     }
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -24,16 +24,19 @@
     LZNavigationBar *bar = [LZNavigationBar showInViewController:self];
     bar.titleLabel.text = @"aaaaaa";
     
+    [LZNavigationBar hiddenFromSupperView];
     
     [bar leftButtonClickWithBlock:^(UIButton *button) {
         NSLog(@"leftButtonClick");
         
-        [self.navigationController popViewControllerAnimated:YES];
+        
 
     }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    
+    [self.navigationController popViewControllerAnimated:YES];
     }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
