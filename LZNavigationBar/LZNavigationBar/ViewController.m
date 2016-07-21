@@ -21,9 +21,9 @@
     // Do any additional setup after loading the view, typically from a nib.
 //    
 //    self.title = @"aflajgaogoajgpowajgowejgwoegjpowjgpwajgpowjgpwjegowjogjwogjweoeg";
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 //
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"按钮按钮ann按钮按钮按钮安娜那你按钮按钮按钮按钮" style:UIBarButtonItemStylePlain target:self action:@selector(left)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"按钮按钮ann按钮按钮按钮安娜那你按钮按钮按钮按钮" style:UIBarButtonItemStylePlain target:self action:@selector(left)];
 //    return;
     LZNavigationBar *bar = [LZNavigationBar showInViewController:self];
 //    bar.backgroundColor = [UIColor redColor];
@@ -34,7 +34,7 @@
     
 //    [bar setBackgroundImage:@"40fe711f9b754b596159f3a6.jpg" isStretch:NO];
     
-    
+    [bar showBottomLineWithColor:nil];
     
     [bar leftButtonClickWithBlock:^(UIButton *button) {
         NSLog(@"leftButtonClick");
@@ -45,10 +45,10 @@
     }];
     
     
-    UITableView *table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    table.delegate = self;
-    table.dataSource = self;
-    [self.view addSubview:table];
+//    UITableView *table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    table.delegate = self;
+//    table.dataSource = self;
+//    [self.view addSubview:table];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {

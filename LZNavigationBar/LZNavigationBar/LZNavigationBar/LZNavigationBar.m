@@ -21,6 +21,7 @@ static UIViewController *superController = nil;
 @property (strong, nonatomic) UIView *contentView;
 @property (strong, nonatomic) UIImageView *backgroundImageView;
 @property (strong, nonatomic) UIVisualEffectView *blurEffectView;
+@property (strong, nonatomic) UIView *bottomLine;
 @property (copy, nonatomic) buttonClickBlock leftButtonClick;
 @property (copy, nonatomic) buttonClickBlock rightButtonClick;
 @end
@@ -98,16 +99,14 @@ static UIViewController *superController = nil;
     return self;
 }
 
-- (void)showBottomLine {
-    UILabel *line = [[UILabel alloc]init];
-    line.backgroundColor = [UIColor grayColor];
-    [self.contentView addSubview:line];
-    [self.contentView bringSubviewToFront:line];
+- (void)showBottomLineWithColor:(UIColor *)color {
     
-    [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.and.bottom.mas_equalTo(self);
-        make.height.mas_equalTo(@1);
-    }];
+    if (color == nil) {
+        
+        color = [UIColor grayColor];
+    }
+    
+    self.bottomLine.backgroundColor = color;
 }
 
 - (void)setBackgroundImage:(NSString*)name isStretch:(BOOL)isStretch {
@@ -123,7 +122,7 @@ static UIViewController *superController = nil;
 
 - (void)setBlurEffect:(BOOL)blur {
     
-    self.blurEffectView.hidden = blur;
+    self.blurEffectView.hidden = !blur;
 }
 
 - (void)leftButtonClickWithBlock:(buttonClickBlock)block {
@@ -183,7 +182,7 @@ static UIViewController *superController = nil;
         
         UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc]initWithEffect:effect];
-        
+        _blurEffectView = effectView;
         [self insertSubview:effectView belowSubview:self.contentView];
         
         [effectView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -213,6 +212,22 @@ static UIViewController *superController = nil;
     }
     
     return _backgroundImageView;
+}
+
+- (UIView *)bottomLine {
+    if (_bottomLine == nil) {
+        
+        UIView *line = [[UIView alloc]init];
+        
+        [self insertSubview:line aboveSubview:self.contentView];
+        _bottomLine = line;
+        [line mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.and.bottom.mas_equalTo(self);
+            make.height.mas_equalTo(@1);
+        }];
+    }
+    
+    return _bottomLine;
 }
 
 - (UILabel *)titleLabel {

@@ -23,21 +23,22 @@
     self.view.backgroundColor = [UIColor orangeColor];
     LZNavigationBar *bar = [LZNavigationBar showInViewController:self];
     bar.titleLabel.text = @"aaaaaa";
+    [bar setBlurEffect:YES];
     
-    [LZNavigationBar hiddenFromSupperView];
+//    [LZNavigationBar hiddenFromSupperView];
     
     [bar leftButtonClickWithBlock:^(UIButton *button) {
         NSLog(@"leftButtonClick");
         
-        
+        [self.navigationController popViewControllerAnimated:YES];
+    
 
     }];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
